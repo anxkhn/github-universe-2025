@@ -191,6 +191,15 @@ def runtime_checks():
 
 
 def rebuild_checks():
+    def equivalent(original, rebuilt):
+        if original.suffix == ".png":
+            with Image.open(original) as left, Image.open(rebuilt) as right:
+                assert left.size == right.size and left.mode == right.mode, original.name
+                assert left.tobytes() == right.tobytes(), original.name
+                assert left.info == right.info, original.name
+        else:
+            assert original.read_bytes() == rebuilt.read_bytes(), original.name
+
     original_root, original_app = builder.ROOT, builder.APP
     with tempfile.TemporaryDirectory(prefix="social-card-") as directory:
         builder.ROOT = Path(directory)
@@ -204,15 +213,10 @@ def rebuild_checks():
                 builder.ROOT / "docs/anas-khan.vcf"
             ).read_bytes()
             for original in (APP / "assets").iterdir():
-                assert (
-                    original.read_bytes() == (builder.APP / "assets" / original.name).read_bytes()
-                ), original.name
-            assert (APP / "icon.png").read_bytes() == (builder.APP / "icon.png").read_bytes()
+                equivalent(original, builder.APP / "assets" / original.name)
+            equivalent(APP / "icon.png", builder.APP / "icon.png")
             for original in (ROOT / "docs/images").glob("social-card*.png"):
-                assert (
-                    original.read_bytes()
-                    == (builder.ROOT / "docs/images" / original.name).read_bytes()
-                ), original.name
+                equivalent(original, builder.ROOT / "docs/images" / original.name)
         finally:
             builder.ROOT, builder.APP = original_root, original_app
 

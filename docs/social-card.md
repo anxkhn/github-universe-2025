@@ -109,7 +109,8 @@ text and QR bounds, every module against the QR matrix, and a
 four-module white quiet zone. They render all ten runtime states through a
 host Badgeware stub, exercise wrapping, toggle behavior and simultaneous
 buttons, check import and cleanup behavior, and rebuild in a temporary tree
-without network access to compare every output byte-for-byte.
+without network access to compare decoded PNG pixels and metadata. Compressed
+PNG bytes can differ across platform zlib builds. VCF and JSON remain byte-exact.
 
 ## Runtime and QR geometry
 
