@@ -20,6 +20,7 @@ for name in (
     "tennis",
     "ir-remote",
     "minesweeper",
+    "social-card",
 ):
     before = set(sys.modules)
     app_dir = "/system/apps/" + name

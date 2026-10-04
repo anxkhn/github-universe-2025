@@ -65,6 +65,7 @@ for app in (
     "wordclock",
     "ir-remote",
     "minesweeper",
+    "social-card",
 ):
     ast.parse((apps / app / "__init__.py").read_text())
     assert (apps / app / "icon.png").read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"

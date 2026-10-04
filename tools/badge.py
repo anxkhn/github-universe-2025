@@ -117,6 +117,7 @@ def deploy_files(source):
             ".png",
             ".ppf",
             ".json",
+            ".vcf",
         }:
             continue
         if path.name in {"secrets.py", "fetch_sprites.py"} or path.name.startswith("screenshot_"):
