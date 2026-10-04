@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+*.pyc
+badge25/.badge_state/**
+.badge-local/
+badge25/apps/pokedex/sprites/
+badge25/apps/pokedex/shiny/
