@@ -1,6 +1,6 @@
 # App catalog and sources
 
-The 2025 bundle has 33 user apps. `menu` and `startup` are system apps and do
+The 2025 bundle has 34 user apps. `menu` and `startup` are system apps and do
 not count toward that total. Deploy the complete `badge25/` tree using the
 [tinkering guide](2025-guide.md).
 
@@ -46,6 +46,7 @@ These use native MonaOS implementations and the badge's physical controls.
 | Tennis | B start, Up/Down paddle | CPU opponent, first to six. Uses 160x120 rendering and elapsed-time movement |
 | IR remote | Up/Down slot, A learn, B replay, C sequence | Original raw IR learner for unknown-model remotes. See [setup and limitations](ir-remote.md). Uses bundled Pimoroni carrier generation |
 | Minesweeper | A release/C left/right, Up/Down vertical, B reveal, hold A then B flag, A+C new | Original 9x7 board with 10 mines, pixel-art tiles, and safe first reveal. See [controls, rules, and artwork](minesweeper.md) |
+| Copilot Minis | Up/Down threads or choices, B open/submit, A back, C details/actions, hold C help | Original MicroPython LAN remote for SDK-managed Copilot CLI sessions. See [setup and verification](copilot-minis.md). SDK source pin `ef04633cc84e4ba8e79888a39259ca276f5de732`, runtime dependency `github-copilot-sdk==1.0.16`. Icon uses the official Copilot Octicon at `923a31b34542702800cb90a0fd390e2e60dd92ac` with a dotted Minis companion; MIT attribution is included in the app |
 
 Every app in this bundle targets the physical buttons and graphics API of the
 badge. New apps need individual hardware and gameplay verification before

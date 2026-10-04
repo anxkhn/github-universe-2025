@@ -1,7 +1,7 @@
 # GitHub Universe 2025 badge toolkit
 
 Restore, configure, and build apps for the colour-screen GitHub Universe 2025
-badge with A, B, C, Up, and Down buttons. This fork contains 33 user apps,
+badge with A, B, C, Up, and Down buttons. This fork contains 34 user apps,
 MonaOS restoration tools, offline Pokedex downloads, and a paginated launcher.
 
 <p>
@@ -15,13 +15,15 @@ MonaOS restoration tools, offline Pokedex downloads, and a paginated launcher.
 - Restore the official MonaOS v4.03 firmware with a checksum-verified download
   and verified flash writes.
 - Back up the entire flash and restore a private snapshot of apps and state.
-- Install 33 apps and an auto-discovering, six-page launcher.
+- Install 34 apps and an auto-discovering, six-page launcher.
 - Learn and replay AC remote signals with the [IR remote app](docs/ir-remote.md).
 - Compress PNG assets with backed-up originals and [decoder-compatible optimization](docs/asset-optimization.md).
 - Configure Wi-Fi and a GitHub profile without committing credentials.
 - Download Pokedex sprites for offline browsing.
 - Unlock or reset all nine infrared quests.
 - Build apps using the desktop simulator, serial REPL, and real-device checks.
+- Monitor Copilot CLI threads, answer permissions, and resume agents over Wi-Fi
+  with [Copilot Minis](docs/copilot-minis.md).
 
 This is a deployable app bundle and host-tool collection. The factory firmware
 comes from the official release. This repository does not build the custom C
@@ -88,7 +90,7 @@ platform-specific equivalents explained in the guide.
 
 | Path | Purpose |
 | --- | --- |
-| [badge25/](badge25/) | Deployable system files, 33 apps, assets, simulator, and API docs |
+| [badge25/](badge25/) | Deployable system files, 34 apps, assets, simulator, and API docs |
 | [tools/](tools/) | Verified download, backup, flash, deploy, configuration, quest, and checks |
 | [docs/2025-guide.md](docs/2025-guide.md) | Installation, USB modes, recovery, Wi-Fi, and development |
 | [docs/apps.md](docs/apps.md) | App catalog, controls, sources, and test results |
