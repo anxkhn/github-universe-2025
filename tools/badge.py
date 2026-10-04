@@ -105,6 +105,8 @@ def configuration(path):
 def deploy_files(source):
     for path in sorted(source.rglob("*")):
         relative = path.relative_to(source)
+        if relative.parts[0] in {"images", "badgerware", "simulator"}:
+            continue
         if any(part.startswith(".") or part == "__pycache__" for part in relative.parts):
             continue
         if path.is_symlink():
@@ -122,7 +124,7 @@ def deploy_files(source):
         yield path, relative
 
 
-def deploy(volume, source=ROOT / "badge25"):
+def deploy(volume, source=ROOT / "badge25", app=None):
     volume = volume.resolve()
     if (
         not volume.is_dir()
@@ -133,6 +135,12 @@ def deploy(volume, source=ROOT / "badge25"):
             "Expected a mounted BADGER volume with apps/menu and assets. Double-tap RESET."
         )
     files = list(deploy_files(source))
+    if app is not None:
+        files = [
+            (path, relative) for path, relative in files if relative.parts[:2] == ("apps", app)
+        ]
+        if not any(relative.name == "__init__.py" for _, relative in files):
+            raise ValueError("App not found in the source bundle.")
     required = sum(
         path.stat().st_size for path, relative in files if not (volume / relative).exists()
     )
@@ -176,6 +184,7 @@ def main():
         "deploy", help="Copy all compatible apps and assets to the BADGER volume"
     )
     copy.add_argument("--volume", type=Path, default=Path("/Volumes/BADGER"))
+    copy.add_argument("--app", help="Deploy only this app directory, preserving other apps")
     config = commands.add_parser(
         "configure",
         help="Prompt for private credentials and write the device's root config",
@@ -222,7 +231,7 @@ def main():
         run(["picotool", "load", "-v", str(path)])
         run(["picotool", "reboot"])
     elif args.command == "deploy":
-        deploy(args.volume)
+        deploy(args.volume, app=args.app)
     elif args.command == "configure":
         LOCAL.mkdir(exist_ok=True)
         file = args.file or LOCAL / "secrets.py"

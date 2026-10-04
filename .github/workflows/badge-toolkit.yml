@@ -18,6 +18,9 @@ jobs:
       - run: uv python install 3.11
       - run: uv run --no-project --python 3.11 tools/test_badge.py
       - run: uv run --no-project --python 3.11 tools/test_profile_cache.py
+      - run: uv run --no-project --python 3.11 tools/test_ir_remote.py
+      - run: uv run --no-project --python 3.11 tools/test_minesweeper.py
+      - run: uv run --no-project --python 3.11 --with pillow tools/test_minesweeper_render.py
       - run: uv run --no-project --python 3.11 tools/check_docs.py
       - run: uvx ruff check tools badge25
-      - run: uvx ruff format --check tools badge25/apps/2048 badge25/apps/christmas badge25/apps/clock badge25/apps/fireplace badge25/apps/hydrate badge25/apps/jungle badge25/apps/pokedex badge25/apps/system badge25/apps/tennis badge25/apps/tomato badge25/apps/wordclock
+      - run: uvx ruff format --check tools badge25/apps/2048 badge25/apps/christmas badge25/apps/clock badge25/apps/fireplace badge25/apps/hydrate badge25/apps/jungle badge25/apps/pokedex badge25/apps/system badge25/apps/tennis badge25/apps/tomato badge25/apps/wordclock badge25/apps/ir-remote badge25/apps/minesweeper

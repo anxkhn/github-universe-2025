@@ -149,7 +149,7 @@ eject the disk with the OS file manager.
 
 Tap RESET once. Press rear HOME to leave the startup animation. The launcher
 discovers apps automatically. A/C change icons and pages, Up/Down change rows,
-B launches, and rear HOME returns to the menu. This bundle has 31 user apps
+B launches, and rear HOME returns to the menu. This bundle has 33 user apps
 across six pages. See the [app catalog](apps.md) for sources and controls.
 
 ## 7. Configure Wi-Fi and GitHub

@@ -1,6 +1,6 @@
 # App catalog and sources
 
-The 2025 bundle has 31 user apps. `menu` and `startup` are system apps and do
+The 2025 bundle has 33 user apps. `menu` and `startup` are system apps and do
 not count toward that total. Deploy the complete `badge25/` tree using the
 [tinkering guide](2025-guide.md).
 
@@ -44,6 +44,8 @@ These use native MonaOS implementations and the badge's physical controls.
 | Hydrate | B +250 ml, A -250 ml, C reset, Up/Down goal | Saved water-intake counter and pie chart. Replaces touch menu and newer graphics methods |
 | Tomato | B start/pause, A reset, C switch focus/break | 25-minute focus, 10-minute short break, 30-minute long break after four tasks. Uses monotonic ticks and a screen alert |
 | Tennis | B start, Up/Down paddle | CPU opponent, first to six. Uses 160x120 rendering and elapsed-time movement |
+| IR remote | Up/Down slot, A learn, B replay, C sequence | Original raw IR learner for unknown-model remotes. See [setup and limitations](ir-remote.md). Uses bundled Pimoroni carrier generation |
+| Minesweeper | A release/C left/right, Up/Down vertical, B reveal, hold A then B flag, A+C new | Original 9x7 board with 10 mines, pixel-art tiles, and safe first reveal. See [controls, rules, and artwork](minesweeper.md) |
 
 Every app in this bundle targets the physical buttons and graphics API of the
 badge. New apps need individual hardware and gameplay verification before
@@ -57,4 +59,13 @@ passed. Tennis entered gameplay. Pokedex had all 302 normal/shiny PNGs installed
 Launcher page icons loaded successfully. These checks do not certify every
 game level, network API, or service-specific setup.
 
+IR remote passed on-device PIO assembly/start/stop, all 49 slot renders,
+control text widths, and writable-root JSON replacement checks. Actual phone
+capture, infrared replay accuracy, and Kenstar AC response need a physical test.
+
 Run the repeatable test with `uv run --no-project tools/badge.py smoke`.
+
+Minesweeper passed offline first-click safety across all 63 cells, flood fill,
+flagging, win/loss, and correct/incorrect chord checks. Installed-device tests
+covered startup, gameplay, win/loss rendering, icon loading, and launcher
+discovery. Run logic checks with `uv run --no-project tools/test_minesweeper.py`.

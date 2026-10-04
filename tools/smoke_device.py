@@ -18,10 +18,13 @@ for name in (
     "hydrate",
     "tomato",
     "tennis",
+    "ir-remote",
+    "minesweeper",
 ):
     before = set(sys.modules)
     app_dir = "/system/apps/" + name
     original_path = list(sys.path)
+    app = None
     try:
         os.chdir(app_dir)
         sys.path.insert(0, app_dir)
@@ -50,6 +53,8 @@ for name in (
         failures.append(name)
         print("FAIL", name, repr(error))
     finally:
+        if name == "ir-remote" and app is not None:
+            app.on_exit()
         sys.path[:] = original_path
         for key in set(sys.modules) - before:
             del sys.modules[key]
